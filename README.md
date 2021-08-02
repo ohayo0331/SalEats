@@ -1,7 +1,9 @@
-# MyStocks
+# SalEats
 
-A stock portfolio web-app that can keep track of your purchased stocks and make predictions of the total value of the portfolio.
+A rudimentary version of Yelp, where users can register accounts, login, search for restaurants, add restaurants, and make reservations on Google Calendar to their account's Favorites.
 
-![image](https://user-images.githubusercontent.com/32147489/126047956-a725407e-d02f-4066-8980-4724a33f64db.png)
+![image](https://user-images.githubusercontent.com/32147489/127817793-11830b31-1907-4474-9a60-1cc37b7308d5.png)
 
-![image](https://user-images.githubusercontent.com/32147489/126047983-e90a3906-8200-4624-a325-39e3923ccdcd.png)
+![image](https://user-images.githubusercontent.com/32147489/127817887-2ddef9fd-443f-44d9-8c9c-5c390488905d.png)
+
+![image](https://user-images.githubusercontent.com/32147489/127817935-51c3138b-eb23-4c64-ae13-839eaa548ca4.png)
