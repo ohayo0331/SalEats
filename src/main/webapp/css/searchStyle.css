@@ -1,0 +1,109 @@
+@font-face {
+	font-family: awesomeFont;
+	src: url("../fonts/FontAwesome.otf") format("opentype");;
+}
+
+.navbar-header {
+	margin-top: 30px;
+	font-size: 100px;
+	font-family: 'Lobster', cursive;
+}
+
+.logo {
+	padding-left: 120px;
+	color: #ab1500;
+}
+
+body {
+	font-family: awesomeFont;
+}
+
+#navbarRight {
+	margin-top: 30px;
+	padding-top: 80px;
+	padding-right: 120px;
+	font-size: 30px;
+	font-family: awesomeFont;
+	color: #979797;
+}
+
+#navbarRight a{
+	text-decoration: none; 
+	color: #979797;
+}
+
+.dividingLine {
+	margin-top: 50px;
+}
+
+.Search-container{
+	padding-top: 1%;
+    margin-top: auto;
+    margin-left: auto;
+    font-family: awesomeFont;
+}
+#searchCap {
+	color: #979797;
+}
+.Search-form-1{
+    
+    /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);*/
+}
+.Search-container form{
+    
+}
+.btnSubmit
+{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 2%;
+    border: none;
+    cursor: pointer;
+}
+#searchIcon {
+	padding: 5%;
+	background-color: #ab1500;
+}
+.Search-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #4c8bf5;
+}
+
+.Search-form-1 .form-check {
+	color: #979797
+}
+
+.container {
+	font-family: awesomeFont;
+	color: #979797
+}
+
+img {
+	object-fit: cover;
+	height: 300px;
+	width: 300px;
+}
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%;
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#map{
+    height: 500px;
+    width:100%;
+}
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	width: 80%;
+}

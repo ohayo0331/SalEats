@@ -1,0 +1,98 @@
+@font-face {
+	font-family: awesomeFont;
+	src: url("../fonts/FontAwesome.otf") format("opentype");;
+}
+
+.navbar-header {
+	margin-top: 30px;
+	font-size: 100px;
+	font-family: 'Lobster', cursive;
+}
+
+.logo {
+	padding-left: 120px;
+	color: #ab1500;
+}
+
+#navbarRight {
+	margin-top: 30px;
+	padding-top: 80px;
+	padding-right: 120px;
+	font-size: 30px;
+	font-family: awesomeFont;
+	color: #979797;
+}
+
+.dividingLine {
+	margin-top: 50px;
+}
+
+#navbarRight a{
+	text-decoration: none; 
+	color: #979797;
+}
+
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-family: awesomeFont;
+}
+.login-form-1{
+    
+    /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);*/
+}
+.login-form-1 h3{
+    text-align: left;
+    color: #333;
+    font-size: 30px;
+    color: #979797;
+}
+.login-form-2{
+    
+    /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);*/
+}
+.login-form-2 h3{
+    text-align: left;
+    color: #333;
+    font-size: 30px;
+    color: #979797;
+}
+.login-container form{
+    padding-top: 5%;
+}
+.btnSubmit
+{
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #ab1500;
+}
+#googleSignIn {
+	background-color: #4c8bf5;
+}
+#divideLogIn {
+	width: 50%;
+	text-align: center;
+	margin-top: 0;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #ab1500;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="google-signin-client_id" content="1029953614300-a63di8kgr75ipapqnsi91c0squb18r6b.apps.googleusercontent.com">
+<link href="css/homeStyle.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="cookieTool.js"></script>
+<title>SalEats Home</title>
+</head>
+<body>
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+	<div class="navbar-header">
+  		<a class="logo" href="#" style="text-decoration: none; color: #ab1500">SalEats!</a>
+	</div>
+	<ul class="nav navbar-nav navbar-right" id="navbarRight">
+      		<li><a class="nav-link" href="#">Home</a></li>
+	</ul>
+	<script type="text/javascript">
+		var navbar = document.getElementById("navbarRight");
+		var li = document.createElement("li");
+		var userName = getCookie("userName");
+		if (userName != "Guest") {
+			var liFav = document.createElement("li");
+			var aFav = document.createElement("a");
+			aFav.setAttribute('href', "favorites.jsp");
+			aFav.innerHTML = "Favorites";
+			liFav.appendChild(aFav);
+			navbar.appendChild(liFav);
+			
+			var a = document.createElement("a");
+			a.setAttribute('href', "javascript:logout();");
+			a.innerHTML = "Logout";
+			li.appendChild(a);
+		}
+		else {
+			var a = document.createElement("a");
+			a.setAttribute('href', "login.html");
+			a.innerHTML = "Login / Sign Up";
+			li.appendChild(a);
+		}
+		navbar.appendChild(li);
+		function logout() {
+			setCookie("userName", "Guest", "d1");
+			var auth2 = gapi.auth2.getAuthInstance();
+		    auth2.signOut().then(function () {
+		      console.log('User signed out.');
+		    });
+			window.location='index.html';
+		}
+		function onLoad() {
+		    gapi.load('auth2', function() {
+		      gapi.auth2.init();
+		    });
+		}
+	</script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</div>
+<hr class="dividingLine">
+</nav>
+
+<!-- Home page Content-->
+<img src="image.jpg" class="img-rounded" alt="Responsive image"> 
+ 
+<div class="container Search-container">
+		<form name="searchForm" method="GET" action="searchResults.jsp">
+            <div class="row">
+                <div class="col-sm-6 Search-form-1">
+                    <div class="form-group">
+                        <input type="text" class="search-query form-control" name="searchTerm" placeholder="Search" />
+                    </div>
+                </div>
+                <div class="col-sm-2 Search-form-1">
+                    <div class="form-group">
+                            <button type="submit" class="btnSubmit" id="searchIcon" value="Search">
+                            	<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                            </button>
+                    </div>
+                </div>
+                <div class="col-sm-2 Search-form-1">
+                	<div class="form-check">
+							<input class="form-check-input" type="radio" name="radio" id="bestMatch" value="best_match" checked="checked"> 
+							<label class="form-check-label" for="bestMatch"> Best Match </label>
+					</div>
+					<div class="form-check">
+							<input class="form-check-input" type="radio" name="radio" id="reviewCount" value="review_count"> 
+							<label class="form-check-label" for="reviewCount"> Review Count </label>
+					</div>
+                </div>
+                <div class="col-sm-2 Search-form-1">
+                	<div class="form-check">
+							<input class="form-check-input" type="radio" name="radio" id="rating" value="rating"> 
+							<label class="form-check-label" for="rating"> Rating </label>
+					</div>
+					<div class="form-check">
+							<input class="form-check-input" type="radio" name="radio" id="distance" value="distance"> 
+							<label class="form-check-label" for="distance"> Distance </label>
+					</div>
+                </div>
+             </div>
+             <div class="row">
+             	<div class="col-sm-4 Search-form-1">
+             		<div class="form-group">
+                            <input type="number" class="form-control" step=any name="latitude" id="latitude" placeholder="Latitude"/>
+                	</div>
+             	</div>
+  				<div class="col-sm-4 Search-form-1">
+  					<div class="form-group">
+                            <input type="number" class="form-control" step=any name="longitude" id="longitude" placeholder="Longitude"/>
+                    </div>
+  				</div>
+  				<div class="col-sm-4 Search-form-1">
+  					<div class="form-group">
+  						<button type="button" class="btnSubmit" id="mapBtn" value="Search">
+                            <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Google Maps (Drop a pin!)
+                        </button>
+                    </div>
+				</div>
+             </div>
+          </form>
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+	
+    <div id="map" class="modal-body"><button type="button" class="close" data-dismiss="modal">&times;</button></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQFn6AV28GgIle9RZdfMKnG1hL1d2jfTI&callback=initMap" async defer></script>
+    	<script>
+    	function initMap() {
+    		var myLatlng = new google.maps.LatLng(34.02116,-118.287132);
+    		var mapOptions = {
+    		  zoom: 11,
+    		  center: myLatlng
+    		}
+    		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    		// Place a draggable marker on the map
+    		var myMarker = new google.maps.Marker({
+    		    position: myLatlng,
+    		    map: map,
+    		    draggable:true,
+    		    title:"Drag me!"
+    		});
+    		google.maps.event.addListener(myMarker, 'dragend', function(evt){
+    		    document.getElementById("latitude").value = evt.latLng.lat().toFixed(6) ;
+    		    document.getElementById("longitude").value = evt.latLng.lng().toFixed(6);
+    		});
+
+    		google.maps.event.addListener(myMarker, 'dragstart', function(evt){
+    		    document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
+    		});
+    	}
+    	
+    </script>
+  	</div>
+  	<script>
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("mapBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+  	modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+  	modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+  		if (event.target == modal) {
+    		modal.style.display = "none";
+  		}
+	}
+	</script>
+</div>
+
+</body>
+</html>

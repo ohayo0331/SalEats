@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-signin-client_id" content="1029953614300-a63di8kgr75ipapqnsi91c0squb18r6b.apps.googleusercontent.com">
+<link href="css/loginStyle.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="cookieTool.js"></script>
+
+<title>SalEats Log In</title>
+<script>
+window.onload=function() {
+	setCookie("userName", "Guest", "d1");
+}
+</script>
+
+<script>
+    	function validateLogIn() {
+    		var xhttp = new XMLHttpRequest();
+    		xhttp.open("GET", "LogInValidate?field=login&userName=" + document.loginForm.userName.value
+                    + "&password=" + document.loginForm.password.value, false);
+    		xhttp.send();
+    		if (xhttp.responseText.trim().length > 0) {
+    			document.getElementById("LogInError").innerHTML = xhttp.responseText;
+    			return false;
+    		}
+    		setCookie("userName", document.loginForm.userName.value, "d1");
+    		return true;
+    	}
+    	
+    	function validateUsernameSignUp() {
+    		var xhttp = new XMLHttpRequest();
+    		xhttp.open("POST", "SignUpValidate", true);
+    		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    		xhttp.onreadystatechange = function() {
+    			document.getElementById("UsernameErrorSignUp").innerHTML = this.responseText;
+    		}
+    		xhttp.send("field=userName&userName=" + document.signupForm.userName.value);
+    	}
+    	
+    	function validatePasswordSignUp() {
+    		var xhttp = new XMLHttpRequest();
+    		xhttp.open("POST", "SignUpValidate", true);
+    		xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    		xhttp.onreadystatechange = function() {
+    			document.getElementById("PasswordErrorSignUp").innerHTML = this.responseText;
+    		}
+    		xhttp.send("field=password&password=" + document.signupForm.password.value + "&passwordConfirm=" + document.signupForm.passwordConfirm.value);
+    	}
+    	
+    	function validateSignUp() {
+    		if (document.getElementById("checked").checked == false) {
+    			document.getElementById("SignUpError").innerHTML = "<font color=\"red\"><strong>Please agree to our terms</strong></font><br />";
+    			return false;
+    		}
+    		var xhttp = new XMLHttpRequest();
+    		xhttp.open("GET", "SignUpValidate?field=signup&userName=" + document.signupForm.userName.value
+                    + "&password=" + document.signupForm.password.value + "&passwordConfirm=" + 
+                    document.signupForm.passwordConfirm.value + "&checked=" + document.signupForm.checked.value
+                    + "&email=" + document.signupForm.email.value, false);
+    		xhttp.send();
+    		if (xhttp.responseText.trim().length > 0) {
+    			document.getElementById("SignUpError").innerHTML = xhttp.responseText;
+    			return false;
+    		}
+    		setCookie("userName", document.signupForm.userName.value, "d1");
+    		return true;
+    	}
+    
+</script>
+</head>
+<body>
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+	<div class="navbar-header">
+  		<a class="logo" href="index.html" style="text-decoration: none; color: #ab1500">SalEats!</a>
+	</div>
+	<ul class="nav navbar-nav navbar-right" id="navbarRight">
+      		<li><a class="nav-link" href="index.html">Home</a></li>
+      		<li><a href="#">Login / Sign Up</a></li>
+	</ul>
+</div>
+<hr class="dividingLine">
+</nav>
+
+<!-- Log In & Sign Up -->
+<div class="container login-container">
+            <div class="row">
+                <div class="col-md-6 login-form-1">
+                    <h3>Login</h3>
+                    <strong><div id="LogInError"></div></strong><br />
+                    <form id="loginForm" name="loginForm" action="index.html" method="POST" onsubmit="return validateLogIn();">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="userName" placeholder="Username" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Sign In" />
+                        </div>
+                        <hr class="dividingLine" id="divideLogIn">
+                        <div id="my-signin2"></div>
+						  	<script>
+							  	var googleUser = {};
+							    function onSuccess(googleUser) {
+							    	var xhr = new XMLHttpRequest();
+							        xhr.open("POST", "GoogleServlet?loginUsername=" + googleUser.getBasicProfile().getName()+"&loginEmail=" + googleUser.getBasicProfile().getEmail());
+
+							        xhr.send();
+							        setCookie("userName", googleUser.getBasicProfile().getName(), "d1");
+							        window.location = "index.html";
+							    }
+							    function onFailure(error) {
+							      console.log(error);
+							    }
+							    function renderButton() {
+							      gapi.signin2.render('my-signin2', {
+							        'scope': 'profile email',
+							        'width': 555,
+							        'height': 50,
+							        'longtitle': true,
+							        'theme': 'dark',
+							        'onsuccess': onSuccess,
+							        'onfailure': onFailure
+							      });
+							    }
+						  	</script>
+						  	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+                    </form>
+                </div>
+                <div class="col-md-6 login-form-2">
+                    <h3>Sign Up</h3>
+                    <strong><div id="UsernameErrorSignUp"></div></strong>
+			        <strong><div id="PasswordErrorSignUp"></div></strong>
+			        <strong><div id="SignUpError"></div></strong><br />
+                    <form id="signupForm" name="signupForm" action="index.html" method="POST" onsubmit="return validateSignUp();">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Your Email" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="userName" placeholder="Username" value="" onblur="validateUsernameSignUp();"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" value="" onblur="validatePasswordSignUp();"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="passwordConfirm" placeholder="Confirm Password" value="" onblur="validatePasswordSignUp();"/>
+                        </div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="checked" id="checked" value="checked"> 
+							<label class="form-check-label" for="checked"> I have read and agree to all terms and Conditions of SalEats </label>
+						</div>
+						<div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Create Account" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
