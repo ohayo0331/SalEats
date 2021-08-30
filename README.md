@@ -1,6 +1,15 @@
 # SalEats
 
-A rudimentary version of Yelp, where users can register accounts, login, search for restaurants, add restaurants, and make reservations on Google Calendar to their account's Favorites.
+A rudimentary version of Yelp, where users can register accounts, login (login with Google), search for restaurants, add restaurants to favorites, and make reservations on Google Calendar.
+
+### Built With
+
+This project is built with the following frameworks and technologies:
+* [Bootstrap](https://getbootstrap.com)
+* [JQuery](https://jquery.com)
+* [Yelp API](https://www.yelp.com/developers)
+* [Google LogIn API](https://developers.google.com/identity)
+* [Google Calendar API](https://developers.google.com/calendar)
 
 ![image](https://user-images.githubusercontent.com/32147489/127817793-11830b31-1907-4474-9a60-1cc37b7308d5.png)
 
